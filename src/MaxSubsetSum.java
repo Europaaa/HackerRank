@@ -1,6 +1,3 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 // Link: https://www.hackerrank.com/challenges/max-array-sum/problem
@@ -27,10 +24,8 @@ public class MaxSubsetSum {
         return sums;
     }
 
-    private static final Scanner scanner = new Scanner(System.in);
-
-    public static void main(String[] args) throws IOException {
-//        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
         int n = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
@@ -40,19 +35,14 @@ public class MaxSubsetSum {
         String[] arrItems = scanner.nextLine().split(" ");
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
+        scanner.close();
+
         for (int i = 0; i < n; i++) {
             int arrItem = Integer.parseInt(arrItems[i]);
             arr[i] = arrItem;
         }
 
-        int res = maxSubsetSum(arr);
-        System.out.println(res);
-
-//        bufferedWriter.write(String.valueOf(res));
-//        bufferedWriter.newLine();
-//
-//        bufferedWriter.close();
-
-        scanner.close();
+        int result = maxSubsetSum(arr);
+        System.out.println(result);
     }
 }

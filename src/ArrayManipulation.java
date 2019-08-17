@@ -1,6 +1,3 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -40,10 +37,8 @@ public class ArrayManipulation {
         return max;
     }
 
-    private static final Scanner scanner = new Scanner(System.in);
-
-    public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
         String[] nm = scanner.nextLine().split(" ");
 
@@ -63,13 +58,9 @@ public class ArrayManipulation {
             }
         }
 
-        long result = arrayManipulation(n, queries);
-
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
-
-        bufferedWriter.close();
-
         scanner.close();
+
+        long result = arrayManipulation(n, queries);
+        System.out.println(result);
     }
 }

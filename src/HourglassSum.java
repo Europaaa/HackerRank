@@ -26,10 +26,8 @@ public class HourglassSum {
                 + array[y + 2][x] + array[y + 2][x + 1] + array[y + 2][x + 2];
     }
 
-    private static final Scanner scanner = new Scanner(System.in);
-
-    public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
         int[][] arr = new int[6][6];
 
@@ -43,13 +41,9 @@ public class HourglassSum {
             }
         }
 
-        int result = hourglassSum(arr);
-
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
-
-        bufferedWriter.close();
-
         scanner.close();
+
+        int result = hourglassSum(arr);
+        System.out.println(result);
     }
 }

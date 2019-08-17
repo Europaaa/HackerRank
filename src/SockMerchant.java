@@ -23,7 +23,7 @@ public class SockMerchant {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        Scanner scanner = new Scanner(System.in);
 
         int n = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
@@ -33,18 +33,14 @@ public class SockMerchant {
         String[] arItems = scanner.nextLine().split(" ");
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
+        scanner.close();
+
         for (int i = 0; i < n; i++) {
             int arItem = Integer.parseInt(arItems[i]);
             ar[i] = arItem;
         }
 
         long result = sockMerchant(n, ar);
-
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
-
-        bufferedWriter.close();
-
-        scanner.close();
+        System.out.println(result);
     }
 }

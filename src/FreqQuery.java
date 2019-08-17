@@ -1,19 +1,13 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
-
-import static java.util.stream.Collectors.joining;
 
 // Link: https://www.hackerrank.com/challenges/frequency-queries/problem
 public class FreqQuery {
@@ -65,39 +59,29 @@ public class FreqQuery {
         return results;
     }
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        int q = Integer.parseInt(bufferedReader.readLine().trim());
+        int q = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
         List<int[]> queries = new ArrayList<>();
 
         Pattern p = Pattern.compile("^(\\d+)\\s+(\\d+)\\s*$");
         IntStream.range(0, q).forEach(i -> {
             int[] query = new int[2];
-            try {
-                Matcher m = p.matcher(bufferedReader.readLine());
-                if (m.matches()) {
-                    query[0] = Integer.parseInt(m.group(1));
-                    query[1] = Integer.parseInt(m.group(2));
-                    queries.add(query);
-                }
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
+
+            Matcher m = p.matcher(scanner.nextLine());
+            if (m.matches()) {
+                query[0] = Integer.parseInt(m.group(1));
+                query[1] = Integer.parseInt(m.group(2));
+                queries.add(query);
             }
         });
 
-        List<Integer> ans = freqQuery(queries);
+        scanner.close();
 
-        bufferedWriter.write(
-                ans.stream()
-                        .map(Object::toString)
-                        .collect(joining("\n"))
-                        + "\n"
-        );
-
-        bufferedReader.close();
-        bufferedWriter.close();
+        List<Integer> result = freqQuery(queries);
+        result.stream().forEach(System.out::println);
     }
 }

@@ -21,9 +21,9 @@ public class CheckMagazine {
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 
-    private static final Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
         String[] mn = scanner.nextLine().split(" ");
 
         int m = Integer.parseInt(mn[0]);
